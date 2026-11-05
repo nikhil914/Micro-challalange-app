@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MicroMind</string>
+    <string name="shortcut_daily">Daily challenge</string>
+    <string name="shortcut_stats">My stats</string>
+</resources>
