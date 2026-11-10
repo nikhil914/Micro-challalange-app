@@ -16,4 +16,13 @@ enum class ChallengeType(val title: String, val skill: Skill, val instructions: 
     ODD_ONE_OUT("Odd One Out", Skill.ATTENTION, "Find the one tile that is different."),
     GO_NO_GO("Go / No-Go", Skill.SPEED, "Tap on green circles. Never tap red."),
     QUICK_COMPARE("Bigger Number", Skill.LOGIC, "Tap the side with the bigger value."),
+    FLANKER("Arrow Focus", Skill.ATTENTION, "Which way does the MIDDLE arrow point? Ignore the rest."),
+    CHIMP_ORDER("Chimp Order", Skill.MEMORY, "Memorize where the numbers are, then tap them 1, 2, 3..."),
+    RULE_SWITCH("Rule Switch", Skill.LOGIC, "Follow the rule shown on top. It keeps changing."),
+    LIGHTS_OUT("Lights Out", Skill.LOGIC, "Tapping a tile flips it and its neighbours. Turn every light off."),
+    NUMBER_SERIES("Next in Line", Skill.LOGIC, "Find the number that comes next in the pattern."),
+    DOT_COUNT("Dot Flash", Skill.ATTENTION, "Dots flash for a moment. How many were there?"),
+    SPOT_CHANGE("Spot the Change", Skill.MEMORY, "The grid blinks and one tile changes. Tap it."),
+    STOP_CLOCK("Stop the Clock", Skill.SPEED, "Stop the timer as close to the target as you can."),
+    MIRROR_MATCH("Mirror Match", Skill.LOGIC, "Same shape rotated, or a mirror image?"),
 }

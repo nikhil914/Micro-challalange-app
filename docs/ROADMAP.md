@@ -21,6 +21,10 @@ Goal: open the app, play one 10-second challenge, see your score, close the app.
 
 ## Phase 1: MVP (v0.1)
 - 8 games: Reaction Tap, Number Memory, Pattern Recall, Color Clash (Stroop), Math Sprint, Odd One Out, Go/No-Go, Bigger Number.
+
+## Phase 1.1 (v0.2.0, from user feedback)
+- Retry button on the result screen: replays the same game at its updated level.
+- 9 more games (17 total): Arrow Focus (flanker), Chimp Order, Rule Switch, Lights Out, Next in Line (number series), Dot Flash, Spot the Change, Stop the Clock, Mirror Match.
 - Every open gives a new challenge: intro, 3-2-1, 10 s play, result.
 - Result: animated score, best, streak, level. Stats: per-game best, average, level, trend line.
 - Settings: haptics, reset progress. App shortcuts: Daily, Stats.

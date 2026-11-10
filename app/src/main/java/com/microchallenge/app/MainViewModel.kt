@@ -24,7 +24,13 @@ import kotlin.random.Random
 
 /** What the single-activity UI is showing. */
 sealed interface Screen {
-    data class Intro(val type: ChallengeType, val difficulty: Int, val isDaily: Boolean) : Screen
+    data class Intro(
+        val type: ChallengeType,
+        val difficulty: Int,
+        val isDaily: Boolean,
+        /** Skip the PLAY button and go straight to 3-2-1 (used by Retry). */
+        val autoStart: Boolean = false,
+    ) : Screen
     data class Playing(
         val session: ChallengeSession,
         val countdown: Countdown,
@@ -70,6 +76,12 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun newChallenge() { screen = nextIntro() }
+
+    /** Replay the game just finished, at its updated level. A daily retry is a normal (non-daily) play. */
+    fun retry() {
+        val type = (screen as? Screen.Result)?.result?.type ?: return
+        screen = Screen.Intro(type, repo.nextDifficulty(type), isDaily = false, autoStart = true)
+    }
 
     fun openDaily() {
         val day = today()

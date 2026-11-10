@@ -36,6 +36,24 @@ import com.microchallenge.app.games.OddOneOutScreen
 import com.microchallenge.app.games.QuickCompareScreen
 import com.microchallenge.app.games.ReactionTapScreen
 import com.microchallenge.app.games.SequenceMemoryScreen
+import com.microchallenge.app.games.FlankerScreen
+import com.microchallenge.core.challenges.games.FlankerSession
+import com.microchallenge.app.games.ChimpOrderScreen
+import com.microchallenge.core.challenges.games.ChimpOrderSession
+import com.microchallenge.app.games.RuleSwitchScreen
+import com.microchallenge.core.challenges.games.RuleSwitchSession
+import com.microchallenge.app.games.LightsOutScreen
+import com.microchallenge.core.challenges.games.LightsOutSession
+import com.microchallenge.app.games.NumberSeriesScreen
+import com.microchallenge.core.challenges.games.NumberSeriesSession
+import com.microchallenge.app.games.DotCountScreen
+import com.microchallenge.core.challenges.games.DotCountSession
+import com.microchallenge.app.games.SpotChangeScreen
+import com.microchallenge.core.challenges.games.SpotChangeSession
+import com.microchallenge.app.games.StopClockScreen
+import com.microchallenge.core.challenges.games.StopClockSession
+import com.microchallenge.app.games.MirrorMatchScreen
+import com.microchallenge.core.challenges.games.MirrorMatchSession
 import com.microchallenge.core.challenges.games.ColorWordSession
 import com.microchallenge.core.challenges.games.GoNoGoSession
 import com.microchallenge.core.challenges.games.MathSprintSession
@@ -100,6 +118,15 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is OddOneOutSession -> OddOneOutScreen(session, elapsedMs, onInput)
                 is GoNoGoSession -> GoNoGoScreen(session, elapsedMs, onInput)
                 is QuickCompareSession -> QuickCompareScreen(session, elapsedMs, onInput)
+                is FlankerSession -> FlankerScreen(session, elapsedMs, onInput)
+                is ChimpOrderSession -> ChimpOrderScreen(session, elapsedMs, onInput)
+                is RuleSwitchSession -> RuleSwitchScreen(session, elapsedMs, onInput)
+                is LightsOutSession -> LightsOutScreen(session, elapsedMs, onInput)
+                is NumberSeriesSession -> NumberSeriesScreen(session, elapsedMs, onInput)
+                is DotCountSession -> DotCountScreen(session, elapsedMs, onInput)
+                is SpotChangeSession -> SpotChangeScreen(session, elapsedMs, onInput)
+                is StopClockSession -> StopClockScreen(session, elapsedMs, onInput)
+                is MirrorMatchSession -> MirrorMatchScreen(session, elapsedMs, onInput)
                 else -> Text("Unknown challenge")
             }
         }

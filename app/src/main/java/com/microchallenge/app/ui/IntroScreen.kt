@@ -44,7 +44,7 @@ fun IntroScreen(
     onStats: () -> Unit,
     onDaily: () -> Unit,
 ) {
-    var counting by remember(intro) { mutableIntStateOf(-1) }
+    var counting by remember(intro) { mutableIntStateOf(if (intro.autoStart) 3 else -1) }
     LaunchedEffect(counting) {
         if (counting > 0) { delay(700); counting -= 1 }
         else if (counting == 0) onStart()

@@ -32,7 +32,7 @@ fun AppRoot(vm: MainViewModel) {
                 is Screen.Intro -> IntroScreen(s, vm.streakNow(), rankTitle = vm.rankTitle(), onStart = vm::start, onSkip = vm::newChallenge,
                     onStats = vm::showStats, onDaily = vm::openDaily, dailyDone = vm.repo.isDailyDone(vm.today()))
                 is Screen.Playing -> ChallengeHost(s, hapticsOn = vm.hapticsOn, onFinished = vm::finish)
-                is Screen.Result -> ResultScreen(s, onAgain = vm::newChallenge, onStats = vm::showStats)
+                is Screen.Result -> ResultScreen(s, onAgain = vm::newChallenge, onRetry = vm::retry, onStats = vm::showStats)
                 Screen.Stats -> StatsScreen(vm.repo, vm.streakNow(), onBack = vm::newChallenge, onSettings = vm::showSettings)
                 Screen.Settings -> SettingsScreen(vm.hapticsOn, vm::setHaptics, vm::resetProgress, onBack = vm::showStats)
             }

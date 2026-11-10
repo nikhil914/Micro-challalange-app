@@ -38,7 +38,7 @@ private fun verdict(score: Int) = when {
 }
 
 @Composable
-fun ResultScreen(r: Screen.Result, onAgain: () -> Unit, onStats: () -> Unit) {
+fun ResultScreen(r: Screen.Result, onAgain: () -> Unit, onRetry: () -> Unit, onStats: () -> Unit) {
     val anim = remember(r) { Animatable(0f) }
     LaunchedEffect(r) { anim.animateTo(r.result.score.toFloat(), tween(900)) }
 
@@ -73,7 +73,10 @@ fun ResultScreen(r: Screen.Result, onAgain: () -> Unit, onStats: () -> Unit) {
         Spacer(Modifier.weight(1f))
         Button(onClick = onAgain, Modifier.fillMaxWidth().height(64.dp)) { Text("Next round", fontSize = 20.sp) }
         Spacer(Modifier.height(8.dp))
-        OutlinedButton(onClick = onStats, Modifier.fillMaxWidth().height(56.dp)) { Text("My stats") }
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            OutlinedButton(onClick = onRetry, Modifier.weight(1f).height(56.dp)) { Text("Retry") }
+            OutlinedButton(onClick = onStats, Modifier.weight(1f).height(56.dp)) { Text("My stats") }
+        }
     }
 }
 
