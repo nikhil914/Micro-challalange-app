@@ -53,7 +53,9 @@ import com.microchallenge.core.challenges.games.SpotChangeSession
 import com.microchallenge.app.games.StopClockScreen
 import com.microchallenge.core.challenges.games.StopClockSession
 import com.microchallenge.app.games.MirrorMatchScreen
+import com.microchallenge.app.games.ColorRushScreen
 import com.microchallenge.core.challenges.games.MirrorMatchSession
+import com.microchallenge.core.challenges.games.ColorRushSession
 import com.microchallenge.core.challenges.games.ColorWordSession
 import com.microchallenge.core.challenges.games.GoNoGoSession
 import com.microchallenge.core.challenges.games.MathSprintSession
@@ -127,6 +129,7 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is SpotChangeSession -> SpotChangeScreen(session, elapsedMs, onInput)
                 is StopClockSession -> StopClockScreen(session, elapsedMs, onInput)
                 is MirrorMatchSession -> MirrorMatchScreen(session, elapsedMs, onInput)
+                is ColorRushSession -> ColorRushScreen(session, elapsedMs, onInput)
                 else -> Text("Unknown challenge")
             }
         }
