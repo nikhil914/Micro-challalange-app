@@ -17,6 +17,7 @@ import com.microchallenge.core.challenges.games.DotCountSession
 import com.microchallenge.core.challenges.games.SpotChangeSession
 import com.microchallenge.core.challenges.games.StopClockSession
 import com.microchallenge.core.challenges.games.MirrorMatchSession
+import com.microchallenge.core.challenges.games.BankShotSession
 import com.microchallenge.core.engine.Clock
 import com.microchallenge.core.model.ChallengeType
 import kotlin.random.Random
@@ -41,6 +42,7 @@ object ChallengeRegistry {
         ChallengeType.SPOT_CHANGE to ChallengeFactory { d, r, c -> SpotChangeSession(d, r, c) },
         ChallengeType.STOP_CLOCK to ChallengeFactory { d, r, c -> StopClockSession(d, r, c) },
         ChallengeType.MIRROR_MATCH to ChallengeFactory { d, r, c -> MirrorMatchSession(d, r, c) },
+        ChallengeType.BANK_SHOT to ChallengeFactory { d, r, c -> BankShotSession(d, r, c) },
     )
 
     fun create(type: ChallengeType, difficulty: Int, random: Random, clock: Clock): ChallengeSession =
