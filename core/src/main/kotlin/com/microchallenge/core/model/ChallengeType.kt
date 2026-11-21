@@ -26,4 +26,5 @@ enum class ChallengeType(val title: String, val skill: Skill, val instructions: 
     STOP_CLOCK("Stop the Clock", Skill.SPEED, "Stop the timer as close to the target as you can."),
     MIRROR_MATCH("Mirror Match", Skill.LOGIC, "Same shape rotated, or a mirror image?"),
     COLOR_RUSH("Color Rush", Skill.SPEED, "Pop only the bubbles that match the target color. The target keeps changing."),
+    GLOW_GRID("Glow Grid", Skill.MEMORY, "Tiles glow for a moment. Tap every one that glowed."),
 }
