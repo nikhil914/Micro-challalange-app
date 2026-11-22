@@ -20,6 +20,7 @@ import com.microchallenge.core.challenges.games.MirrorMatchSession
 import com.microchallenge.core.challenges.games.ColorRushSession
 import com.microchallenge.core.challenges.games.BankShotSession
 import com.microchallenge.core.challenges.games.GlowGridSession
+import com.microchallenge.core.challenges.games.PipeFlowSession
 import com.microchallenge.core.challenges.games.NeonDashSession
 import com.microchallenge.core.engine.Clock
 import com.microchallenge.core.model.ChallengeType
@@ -48,6 +49,7 @@ object ChallengeRegistry {
         ChallengeType.COLOR_RUSH to ChallengeFactory { d, r, c -> ColorRushSession(d, r, c) },
         ChallengeType.BANK_SHOT to ChallengeFactory { d, r, c -> BankShotSession(d, r, c) },
         ChallengeType.GLOW_GRID to ChallengeFactory { d, r, c -> GlowGridSession(d, r, c) },
+        ChallengeType.PIPE_FLOW to ChallengeFactory { d, r, c -> PipeFlowSession(d, r, c) },
         ChallengeType.NEON_DASH to ChallengeFactory { d, r, c -> NeonDashSession(d, r, c) },
     )
 
