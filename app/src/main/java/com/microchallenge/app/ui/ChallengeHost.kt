@@ -66,6 +66,8 @@ import com.microchallenge.app.games.PipeFlowScreen
 import com.microchallenge.core.challenges.games.PipeFlowSession
 import com.microchallenge.app.games.NeonDashScreen
 import com.microchallenge.core.challenges.games.NeonDashSession
+import com.microchallenge.app.games.MathBlitzScreen
+import com.microchallenge.core.challenges.games.MathBlitzSession
 import com.microchallenge.core.challenges.games.ColorWordSession
 import com.microchallenge.core.challenges.games.GoNoGoSession
 import com.microchallenge.core.challenges.games.MathSprintSession
@@ -145,6 +147,7 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is WordScrambleSession -> WordScrambleScreen(session, elapsedMs, onInput)
                 is PipeFlowSession -> PipeFlowScreen(session, elapsedMs, onInput)
                 is NeonDashSession -> NeonDashScreen(session, elapsedMs, onInput)
+                is MathBlitzSession -> MathBlitzScreen(session, elapsedMs, onInput)
                 else -> Text("Unknown challenge")
             }
         }
