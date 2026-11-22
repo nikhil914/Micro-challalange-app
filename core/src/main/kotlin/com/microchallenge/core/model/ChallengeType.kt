@@ -28,6 +28,7 @@ enum class ChallengeType(val title: String, val skill: Skill, val instructions: 
     COLOR_RUSH("Color Rush", Skill.SPEED, "Pop only the bubbles that match the target color. The target keeps changing."),
     BANK_SHOT("Bank Shot", Skill.LOGIC, "Drag back from the ball and let go. Bounce it into the hole."),
     GLOW_GRID("Glow Grid", Skill.MEMORY, "Tiles glow for a moment. Tap every one that glowed."),
+    WORD_SCRAMBLE("Word Scramble", Skill.LOGIC, "Tap the letters in order to unscramble the word."),
     PIPE_FLOW("Pipe Flow", Skill.LOGIC, "Tap pipes to turn them. Connect the water to the drain."),
     NEON_DASH("Neon Dash", Skill.SPEED, "Swipe or tap left/right to switch lanes. Dodge barriers, grab orbs."),
 }
