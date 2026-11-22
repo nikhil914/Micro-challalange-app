@@ -18,7 +18,9 @@ import com.microchallenge.core.challenges.games.SpotChangeSession
 import com.microchallenge.core.challenges.games.StopClockSession
 import com.microchallenge.core.challenges.games.MirrorMatchSession
 import com.microchallenge.core.challenges.games.ColorRushSession
+import com.microchallenge.core.challenges.games.BankShotSession
 import com.microchallenge.core.challenges.games.GlowGridSession
+import com.microchallenge.core.challenges.games.NeonDashSession
 import com.microchallenge.core.engine.Clock
 import com.microchallenge.core.model.ChallengeType
 import kotlin.random.Random
@@ -44,7 +46,9 @@ object ChallengeRegistry {
         ChallengeType.STOP_CLOCK to ChallengeFactory { d, r, c -> StopClockSession(d, r, c) },
         ChallengeType.MIRROR_MATCH to ChallengeFactory { d, r, c -> MirrorMatchSession(d, r, c) },
         ChallengeType.COLOR_RUSH to ChallengeFactory { d, r, c -> ColorRushSession(d, r, c) },
+        ChallengeType.BANK_SHOT to ChallengeFactory { d, r, c -> BankShotSession(d, r, c) },
         ChallengeType.GLOW_GRID to ChallengeFactory { d, r, c -> GlowGridSession(d, r, c) },
+        ChallengeType.NEON_DASH to ChallengeFactory { d, r, c -> NeonDashSession(d, r, c) },
     )
 
     fun create(type: ChallengeType, difficulty: Int, random: Random, clock: Clock): ChallengeSession =
