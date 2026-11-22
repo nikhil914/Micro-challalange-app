@@ -43,7 +43,9 @@ import com.microchallenge.core.challenges.games.ChimpOrderSession
 import com.microchallenge.app.games.RuleSwitchScreen
 import com.microchallenge.core.challenges.games.RuleSwitchSession
 import com.microchallenge.app.games.LightsOutScreen
+import com.microchallenge.app.games.BankShotScreen
 import com.microchallenge.core.challenges.games.LightsOutSession
+import com.microchallenge.core.challenges.games.BankShotSession
 import com.microchallenge.app.games.NumberSeriesScreen
 import com.microchallenge.core.challenges.games.NumberSeriesSession
 import com.microchallenge.app.games.DotCountScreen
@@ -129,6 +131,7 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is SpotChangeSession -> SpotChangeScreen(session, elapsedMs, onInput)
                 is StopClockSession -> StopClockScreen(session, elapsedMs, onInput)
                 is MirrorMatchSession -> MirrorMatchScreen(session, elapsedMs, onInput)
+                is BankShotSession -> BankShotScreen(session, elapsedMs, onInput)
                 is GlowGridSession -> GlowGridScreen(session, elapsedMs, onInput)
                 else -> Text("Unknown challenge")
             }
