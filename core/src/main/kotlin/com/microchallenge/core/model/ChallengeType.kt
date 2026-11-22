@@ -27,5 +27,6 @@ enum class ChallengeType(val title: String, val skill: Skill, val instructions: 
     MIRROR_MATCH("Mirror Match", Skill.LOGIC, "Same shape rotated, or a mirror image?"),
     BANK_SHOT("Bank Shot", Skill.LOGIC, "Drag back from the ball and let go. Bounce it into the hole."),
     GLOW_GRID("Glow Grid", Skill.MEMORY, "Tiles glow for a moment. Tap every one that glowed."),
+    PIPE_FLOW("Pipe Flow", Skill.LOGIC, "Tap pipes to turn them. Connect the water to the drain."),
     NEON_DASH("Neon Dash", Skill.SPEED, "Swipe or tap left/right to switch lanes. Dodge barriers, grab orbs."),
 }
