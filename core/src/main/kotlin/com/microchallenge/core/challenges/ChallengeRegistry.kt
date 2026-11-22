@@ -18,6 +18,7 @@ import com.microchallenge.core.challenges.games.SpotChangeSession
 import com.microchallenge.core.challenges.games.StopClockSession
 import com.microchallenge.core.challenges.games.MirrorMatchSession
 import com.microchallenge.core.challenges.games.GlowGridSession
+import com.microchallenge.core.challenges.games.PipeFlowSession
 import com.microchallenge.core.engine.Clock
 import com.microchallenge.core.model.ChallengeType
 import kotlin.random.Random
@@ -43,6 +44,7 @@ object ChallengeRegistry {
         ChallengeType.STOP_CLOCK to ChallengeFactory { d, r, c -> StopClockSession(d, r, c) },
         ChallengeType.MIRROR_MATCH to ChallengeFactory { d, r, c -> MirrorMatchSession(d, r, c) },
         ChallengeType.GLOW_GRID to ChallengeFactory { d, r, c -> GlowGridSession(d, r, c) },
+        ChallengeType.PIPE_FLOW to ChallengeFactory { d, r, c -> PipeFlowSession(d, r, c) },
     )
 
     fun create(type: ChallengeType, difficulty: Int, random: Random, clock: Clock): ChallengeSession =
