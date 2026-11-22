@@ -29,4 +29,5 @@ enum class ChallengeType(val title: String, val skill: Skill, val instructions: 
     GLOW_GRID("Glow Grid", Skill.MEMORY, "Tiles glow for a moment. Tap every one that glowed."),
     PIPE_FLOW("Pipe Flow", Skill.LOGIC, "Tap pipes to turn them. Connect the water to the drain."),
     NEON_DASH("Neon Dash", Skill.SPEED, "Swipe or tap left/right to switch lanes. Dodge barriers, grab orbs."),
+    MATH_BLITZ("Math Blitz", Skill.MATH, "Pop every falling equation that equals the target. Build combos!"),
 }
