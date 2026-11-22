@@ -23,6 +23,7 @@ Core tests only (no Android SDK needed):
 ## Docs
 - `docs/ROADMAP.md`: phases and milestones.
 - `docs/CHALLENGE_CONTRACT.md`: how to add a new game.
+- `docs/CREDITS.md`: sources and licences behind the game mechanics and art.
 - `docs/RESEARCH.md`: research notes (cognitive tasks, competitors, Android timing, App Inventor path).
 
 ## Disclaimer

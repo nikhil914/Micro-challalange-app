@@ -58,6 +58,16 @@ import com.microchallenge.app.games.MirrorMatchScreen
 import com.microchallenge.app.games.ColorRushScreen
 import com.microchallenge.core.challenges.games.MirrorMatchSession
 import com.microchallenge.core.challenges.games.ColorRushSession
+import com.microchallenge.app.games.PairUpScreen
+import com.microchallenge.core.challenges.games.PairUpSession
+import com.microchallenge.app.games.BubbleSumScreen
+import com.microchallenge.core.challenges.games.BubbleSumSession
+import com.microchallenge.app.games.StarCatcherScreen
+import com.microchallenge.core.challenges.games.StarCatcherSession
+import com.microchallenge.app.games.SlideShiftScreen
+import com.microchallenge.core.challenges.games.SlideShiftSession
+import com.microchallenge.app.games.WeighInScreen
+import com.microchallenge.core.challenges.games.WeighInSession
 import com.microchallenge.app.games.GlowGridScreen
 import com.microchallenge.app.games.WordScrambleScreen
 import com.microchallenge.core.challenges.games.GlowGridSession
@@ -142,6 +152,11 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is StopClockSession -> StopClockScreen(session, elapsedMs, onInput)
                 is MirrorMatchSession -> MirrorMatchScreen(session, elapsedMs, onInput)
                 is ColorRushSession -> ColorRushScreen(session, elapsedMs, onInput)
+                is PairUpSession -> PairUpScreen(session, elapsedMs, onInput)
+                is BubbleSumSession -> BubbleSumScreen(session, elapsedMs, onInput)
+                is StarCatcherSession -> StarCatcherScreen(session, elapsedMs, onInput)
+                is SlideShiftSession -> SlideShiftScreen(session, elapsedMs, onInput)
+                is WeighInSession -> WeighInScreen(session, elapsedMs, onInput)
                 is BankShotSession -> BankShotScreen(session, elapsedMs, onInput)
                 is GlowGridSession -> GlowGridScreen(session, elapsedMs, onInput)
                 is WordScrambleSession -> WordScrambleScreen(session, elapsedMs, onInput)
