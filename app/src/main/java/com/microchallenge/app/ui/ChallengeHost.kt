@@ -43,7 +43,9 @@ import com.microchallenge.core.challenges.games.ChimpOrderSession
 import com.microchallenge.app.games.RuleSwitchScreen
 import com.microchallenge.core.challenges.games.RuleSwitchSession
 import com.microchallenge.app.games.LightsOutScreen
+import com.microchallenge.app.games.BankShotScreen
 import com.microchallenge.core.challenges.games.LightsOutSession
+import com.microchallenge.core.challenges.games.BankShotSession
 import com.microchallenge.app.games.NumberSeriesScreen
 import com.microchallenge.core.challenges.games.NumberSeriesSession
 import com.microchallenge.app.games.DotCountScreen
@@ -58,6 +60,8 @@ import com.microchallenge.app.games.GlowGridScreen
 import com.microchallenge.app.games.PipeFlowScreen
 import com.microchallenge.core.challenges.games.GlowGridSession
 import com.microchallenge.core.challenges.games.PipeFlowSession
+import com.microchallenge.app.games.NeonDashScreen
+import com.microchallenge.core.challenges.games.NeonDashSession
 import com.microchallenge.core.challenges.games.ColorWordSession
 import com.microchallenge.core.challenges.games.GoNoGoSession
 import com.microchallenge.core.challenges.games.MathSprintSession
@@ -131,8 +135,10 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is SpotChangeSession -> SpotChangeScreen(session, elapsedMs, onInput)
                 is StopClockSession -> StopClockScreen(session, elapsedMs, onInput)
                 is MirrorMatchSession -> MirrorMatchScreen(session, elapsedMs, onInput)
+                is BankShotSession -> BankShotScreen(session, elapsedMs, onInput)
                 is GlowGridSession -> GlowGridScreen(session, elapsedMs, onInput)
                 is PipeFlowSession -> PipeFlowScreen(session, elapsedMs, onInput)
+                is NeonDashSession -> NeonDashScreen(session, elapsedMs, onInput)
                 else -> Text("Unknown challenge")
             }
         }
