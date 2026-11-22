@@ -55,7 +55,9 @@ import com.microchallenge.core.challenges.games.SpotChangeSession
 import com.microchallenge.app.games.StopClockScreen
 import com.microchallenge.core.challenges.games.StopClockSession
 import com.microchallenge.app.games.MirrorMatchScreen
+import com.microchallenge.app.games.ColorRushScreen
 import com.microchallenge.core.challenges.games.MirrorMatchSession
+import com.microchallenge.core.challenges.games.ColorRushSession
 import com.microchallenge.app.games.GlowGridScreen
 import com.microchallenge.app.games.PipeFlowScreen
 import com.microchallenge.core.challenges.games.GlowGridSession
@@ -135,6 +137,7 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is SpotChangeSession -> SpotChangeScreen(session, elapsedMs, onInput)
                 is StopClockSession -> StopClockScreen(session, elapsedMs, onInput)
                 is MirrorMatchSession -> MirrorMatchScreen(session, elapsedMs, onInput)
+                is ColorRushSession -> ColorRushScreen(session, elapsedMs, onInput)
                 is BankShotSession -> BankShotScreen(session, elapsedMs, onInput)
                 is GlowGridSession -> GlowGridScreen(session, elapsedMs, onInput)
                 is PipeFlowSession -> PipeFlowScreen(session, elapsedMs, onInput)

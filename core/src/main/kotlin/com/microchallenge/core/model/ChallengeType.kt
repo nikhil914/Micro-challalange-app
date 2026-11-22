@@ -25,6 +25,7 @@ enum class ChallengeType(val title: String, val skill: Skill, val instructions: 
     SPOT_CHANGE("Spot the Change", Skill.MEMORY, "The grid blinks and one tile changes. Tap it."),
     STOP_CLOCK("Stop the Clock", Skill.SPEED, "Stop the timer as close to the target as you can."),
     MIRROR_MATCH("Mirror Match", Skill.LOGIC, "Same shape rotated, or a mirror image?"),
+    COLOR_RUSH("Color Rush", Skill.SPEED, "Pop only the bubbles that match the target color. The target keeps changing."),
     BANK_SHOT("Bank Shot", Skill.LOGIC, "Drag back from the ball and let go. Bounce it into the hole."),
     GLOW_GRID("Glow Grid", Skill.MEMORY, "Tiles glow for a moment. Tap every one that glowed."),
     PIPE_FLOW("Pipe Flow", Skill.LOGIC, "Tap pipes to turn them. Connect the water to the drain."),
