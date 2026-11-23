@@ -14,7 +14,7 @@ android {
         targetSdk = 36
         // CI passes these from the git tag (v1.2.3) and run number.
         versionCode = (System.getenv("VERSION_CODE") ?: "1").toInt()
-        versionName = System.getenv("VERSION_NAME") ?: "0.1.0"
+        versionName = System.getenv("VERSION_NAME") ?: "0.3.0"
     }
 
     // Release signing comes from env vars (set by CI from GitHub secrets).

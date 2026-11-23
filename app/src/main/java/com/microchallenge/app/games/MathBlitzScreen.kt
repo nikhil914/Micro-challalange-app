@@ -79,7 +79,7 @@ private val DangerRed = Color(0xFFFF4D6D)
 private const val BUBBLE_HEIGHT_DP = 54
 private const val BANNER_MS = 800L
 
-private data class Star(val x: Float, val y: Float, val r: Float, val speed: Float, val phase: Float)
+private data class BlitzStar(val x: Float, val y: Float, val r: Float, val speed: Float, val phase: Float)
 
 @Composable
 fun MathBlitzScreen(session: MathBlitzSession, elapsedMs: Long, onInput: () -> Unit) {
@@ -119,7 +119,7 @@ fun MathBlitzScreen(session: MathBlitzSession, elapsedMs: Long, onInput: () -> U
 
     val stars = remember(session) {
         val r = Random(42)
-        List(46) { Star(r.nextFloat(), r.nextFloat(), 0.6f + r.nextFloat() * 1.8f, 0.01f + r.nextFloat() * 0.04f, r.nextFloat() * 6.28f) }
+        List(46) { BlitzStar(r.nextFloat(), r.nextFloat(), 0.6f + r.nextFloat() * 1.8f, 0.01f + r.nextFloat() * 0.04f, r.nextFloat() * 6.28f) }
     }
 
     fun onBubbleTap(id: Int) {
