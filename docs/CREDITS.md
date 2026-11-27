@@ -15,6 +15,7 @@ Game mechanics are not covered by copyright, but we credit the sources we drew o
 | Star Catcher | Whack-a-target reflex game, with a Go/No-Go twist from cognitive psychology | Public domain | The idea only. |
 | Bubble Sum | Subset-sum to a target, a common maths drill | Public domain | The idea only. |
 | Weigh In | Balance-scale ordering puzzles (transitive inference) | Public domain | The idea only. |
+| Stack Tower | Tap-to-drop block stacker, a common arcade timing genre | Public domain | The idea only: slice off the overhang, perfect drops snap. All art is drawn in code. |
 
 ## Rules for adding third-party material
 - Code: only MIT, BSD, Apache-2.0 or similarly permissive licences. Keep the original
