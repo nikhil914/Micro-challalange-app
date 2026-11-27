@@ -1,6 +1,7 @@
 # Credits and licences
 
-MicroMind ships no third-party game code, images, sounds or fonts. All game logic is
+MicroMind ships no third-party game code, images or sounds. The only third-party assets are
+the two fonts listed under [Fonts](#fonts). All game logic is
 original Kotlin, and all game art is drawn at runtime with Compose Canvas
 (`app/src/main/java/com/microchallenge/app/games/GameArt.kt`).
 
@@ -18,6 +19,13 @@ Game mechanics are not covered by copyright, but we credit the sources we drew o
 | Slide Puzzle | The classic "15 puzzle" (Noyes Chapman, 1880) and "Fifteen" from Simon Tatham's Portable Puzzle Collection | Public domain (mechanic) / MIT (collection) | The idea only. No code was copied. |
 | Rhythm Tap | Timing-to-a-beat tap game, a common rhythm-game mechanic | Public domain | The idea only. Rings, bursts and effects are original Canvas drawing. |
 | Stack Tower | Tap-to-drop block stacker, a common arcade timing genre | Public domain | The idea only: slice off the overhang, perfect drops snap. All art is drawn in code. |
+
+## Fonts
+
+| Font | Files | Licence | Source |
+|------|-------|---------|--------|
+| Outfit (headings, numbers) | `app/src/main/res/font/outfit_*.ttf` | [SIL Open Font License 1.1](licenses/OFL-Outfit.txt) | [Outfit project](https://github.com/Outfitio/Outfit-Fonts) via Google Fonts |
+| Inter (body text) | `app/src/main/res/font/inter_*.ttf`, subset to Latin to keep the APK small | [SIL Open Font License 1.1](licenses/OFL-Inter.txt) | [Inter project](https://github.com/rsms/inter) via Google Fonts |
 
 ## Rules for adding third-party material
 - Code: only MIT, BSD, Apache-2.0 or similarly permissive licences. Keep the original
