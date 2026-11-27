@@ -25,6 +25,7 @@ import com.microchallenge.core.challenges.games.SlideShiftSession
 import com.microchallenge.core.challenges.games.WeighInSession
 import com.microchallenge.core.challenges.games.BankShotSession
 import com.microchallenge.core.challenges.games.GlowGridSession
+import com.microchallenge.core.challenges.games.SlidingTileSession
 import com.microchallenge.core.challenges.games.WordScrambleSession
 import com.microchallenge.core.challenges.games.PipeFlowSession
 import com.microchallenge.core.challenges.games.NeonDashSession
@@ -68,6 +69,7 @@ object ChallengeRegistry {
         ChallengeType.PIPE_FLOW to ChallengeFactory { d, r, c -> PipeFlowSession(d, r, c) },
         ChallengeType.NEON_DASH to ChallengeFactory { d, r, c -> NeonDashSession(d, r, c) },
         ChallengeType.MATH_BLITZ to ChallengeFactory { d, r, c -> MathBlitzSession(d, r, c) },
+        ChallengeType.SLIDING_TILE to ChallengeFactory { d, r, c -> SlidingTileSession(d, r, c) },
         ChallengeType.RHYTHM_TAP to ChallengeFactory { d, r, c -> RhythmTapSession(d, r, c) },
         ChallengeType.STACK_TOWER to ChallengeFactory { d, r, c -> StackTowerSession(d, r, c) },
         ChallengeType.TWIN_SCENES to ChallengeFactory { d, r, c -> TwinScenesSession(d, r, c) },

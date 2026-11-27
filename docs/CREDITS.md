@@ -15,6 +15,7 @@ Game mechanics are not covered by copyright, but we credit the sources we drew o
 | Star Catcher | Whack-a-target reflex game, with a Go/No-Go twist from cognitive psychology | Public domain | The idea only. |
 | Bubble Sum | Subset-sum to a target, a common maths drill | Public domain | The idea only. |
 | Weigh In | Balance-scale ordering puzzles (transitive inference) | Public domain | The idea only. |
+| Slide Puzzle | The classic "15 puzzle" (Noyes Chapman, 1880) and "Fifteen" from Simon Tatham's Portable Puzzle Collection | Public domain (mechanic) / MIT (collection) | The idea only. No code was copied. |
 | Rhythm Tap | Timing-to-a-beat tap game, a common rhythm-game mechanic | Public domain | The idea only. Rings, bursts and effects are original Canvas drawing. |
 | Stack Tower | Tap-to-drop block stacker, a common arcade timing genre | Public domain | The idea only: slice off the overhang, perfect drops snap. All art is drawn in code. |
 
