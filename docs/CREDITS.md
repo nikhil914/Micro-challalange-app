@@ -16,6 +16,7 @@ Game mechanics are not covered by copyright, but we credit the sources we drew o
 | Bubble Sum | Subset-sum to a target, a common maths drill | Public domain | The idea only. |
 | Weigh In | Balance-scale ordering puzzles (transitive inference) | Public domain | The idea only. |
 | Rhythm Tap | Timing-to-a-beat tap game, a common rhythm-game mechanic | Public domain | The idea only. Rings, bursts and effects are original Canvas drawing. |
+| Stack Tower | Tap-to-drop block stacker, a common arcade timing genre | Public domain | The idea only: slice off the overhang, perfect drops snap. All art is drawn in code. |
 
 ## Rules for adding third-party material
 - Code: only MIT, BSD, Apache-2.0 or similarly permissive licences. Keep the original

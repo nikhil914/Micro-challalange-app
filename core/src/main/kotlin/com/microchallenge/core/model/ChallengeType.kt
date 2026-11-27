@@ -38,4 +38,6 @@ enum class ChallengeType(val title: String, val skill: Skill, val instructions: 
     NEON_DASH("Neon Dash", Skill.SPEED, "Swipe or tap left/right to switch lanes. Dodge barriers, grab orbs."),
     MATH_BLITZ("Math Blitz", Skill.MATH, "Pop every falling equation that equals the target. Build combos!"),
     RHYTHM_TAP("Rhythm Tap", Skill.SPEED, "Tap the moment each shrinking ring lands on the circle."),
+    STACK_TOWER("Stack Tower", Skill.SPEED, "Tap to drop each block onto the tower. Overhang gets sliced off."),
+    TWIN_SCENES("Twin Scenes", Skill.ATTENTION, "Two scenes, one difference. Tap the sticker that changed."),
 }
