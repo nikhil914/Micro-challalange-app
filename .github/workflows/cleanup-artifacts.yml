@@ -1,0 +1,35 @@
+name: Clean up artifacts
+
+# Manual only. Deletes old workflow artifacts to free Actions storage,
+# keeping the newest ones.
+on:
+  workflow_dispatch:
+    inputs:
+      keep:
+        description: "How many of the newest artifacts to keep"
+        required: false
+        default: "5"
+
+permissions:
+  actions: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Delete all but the newest artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          KEEP: ${{ inputs.keep }}
+        run: |
+          gh api --paginate "repos/$REPO/actions/artifacts?per_page=100" \
+            --jq '.artifacts[] | select(.expired == false) | [.created_at, .id, .size_in_bytes, .name] | @tsv' \
+            | sort -r > artifacts.tsv
+          echo "Found $(wc -l < artifacts.tsv) artifacts, keeping newest $KEEP:"
+          head -n "$KEEP" artifacts.tsv
+          tail -n +"$((KEEP + 1))" artifacts.tsv | while IFS=$'\t' read -r created id size name; do
+            gh api -X DELETE "repos/$REPO/actions/artifacts/$id" && echo "Deleted $name ($id, $size bytes, $created)"
+          done
+          tail -n +"$((KEEP + 1))" artifacts.tsv | awk -F'\t' '{s+=$3} END {printf "Freed about %.1f MB\n", s/1048576}'
