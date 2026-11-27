@@ -17,6 +17,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.microchallenge.app.MainViewModel
@@ -39,53 +43,61 @@ fun AppRoot(vm: MainViewModel) {
     }
     val onTab = screen is Screen.Home || screen is Screen.Library || screen is Screen.Stats
 
-    Box(Modifier.fillMaxSize()) {
-        GlowBackground(accent = accent, still = screen is Screen.Playing)
-        Column(Modifier.fillMaxSize().safeDrawingPadding()) {
-            AnimatedContent(
-                targetState = screen,
-                contentKey = { it::class },
-                transitionSpec = { (fadeIn(tween(240)) + scaleIn(tween(240), initialScale = 0.96f)) togetherWith fadeOut(tween(140)) },
-                modifier = Modifier.weight(1f).fillMaxWidth(),
-                label = "screen",
-            ) { s ->
-                when (s) {
-                    Screen.Home -> HomeScreen(
-                        homeState(vm), onDaily = vm::openDaily, onQuickPlay = vm::newChallenge,
-                        onGame = vm::openGame, onSeeAll = vm::showLibrary,
-                    )
-                    Screen.Library -> LibraryScreen(
-                        bests = ChallengeType.entries.associateWith { vm.repo.best(it) },
-                        plays = vm.repo.playCounts(),
-                        filter = vm.libraryFilter, onFilter = vm::pickLibraryFilter, onGame = vm::openGame,
-                    )
-                    is Screen.Intro -> IntroScreen(
-                        s, best = vm.repo.best(s.type), plays = vm.repo.plays(s.type),
-                        onStart = vm::start, onBack = vm::goBack, onShuffle = vm::newChallenge,
-                    )
-                    is Screen.Playing -> Box(Modifier.padding(16.dp)) {
-                        ChallengeHost(s, hapticsOn = vm.hapticsOn, onFinished = vm::finish)
-                    }
-                    is Screen.Result -> Box(Modifier.padding(16.dp)) {
-                        ResultScreen(s, onAgain = vm::newChallenge, onRetry = vm::retry, onStats = vm::showStats)
-                    }
-                    Screen.Stats -> Box(Modifier.padding(16.dp)) {
-                        StatsScreen(vm.repo, vm.streakNow(), onBack = vm::goBack, onSettings = vm::showSettings)
-                    }
-                    Screen.Settings -> Box(Modifier.padding(16.dp)) {
-                        SettingsScreen(vm.hapticsOn, vm::setHaptics, vm::resetProgress, onBack = vm::goBack)
+    val haptics = if (vm.hapticsOn) LocalHapticFeedback.current else SilentHaptics
+    CompositionLocalProvider(LocalHapticFeedback provides haptics) {
+        Box(Modifier.fillMaxSize()) {
+            GlowBackground(accent = accent, still = screen is Screen.Playing)
+            Column(Modifier.fillMaxSize().safeDrawingPadding()) {
+                AnimatedContent(
+                    targetState = screen,
+                    contentKey = { it::class },
+                    transitionSpec = { (fadeIn(tween(240)) + scaleIn(tween(240), initialScale = 0.96f)) togetherWith fadeOut(tween(140)) },
+                    modifier = Modifier.weight(1f).fillMaxWidth(),
+                    label = "screen",
+                ) { s ->
+                    when (s) {
+                        Screen.Home -> HomeScreen(
+                            homeState(vm), onDaily = vm::openDaily, onQuickPlay = vm::newChallenge,
+                            onGame = vm::openGame, onSeeAll = vm::showLibrary,
+                        )
+                        Screen.Library -> LibraryScreen(
+                            bests = ChallengeType.entries.associateWith { vm.repo.best(it) },
+                            plays = vm.repo.playCounts(),
+                            filter = vm.libraryFilter, onFilter = vm::pickLibraryFilter, onGame = vm::openGame,
+                        )
+                        is Screen.Intro -> IntroScreen(
+                            s, best = vm.repo.best(s.type), plays = vm.repo.plays(s.type),
+                            onStart = vm::start, onBack = vm::goBack, onShuffle = vm::newChallenge,
+                        )
+                        is Screen.Playing -> Box(Modifier.padding(16.dp)) {
+                            ChallengeHost(s, hapticsOn = vm.hapticsOn, onFinished = vm::finish)
+                        }
+                        is Screen.Result -> Box(Modifier.padding(16.dp)) {
+                            ResultScreen(s, onAgain = vm::newChallenge, onRetry = vm::retry, onHome = vm::goBack)
+                        }
+                        Screen.Stats -> Box(Modifier.padding(16.dp)) {
+                            StatsScreen(vm.repo, vm.streakNow(), onBack = vm::goBack, onSettings = vm::showSettings)
+                        }
+                        Screen.Settings -> Box(Modifier.padding(16.dp)) {
+                            SettingsScreen(vm.hapticsOn, vm::setHaptics, vm::resetProgress, onBack = vm::goBack)
+                        }
                     }
                 }
-            }
-            AnimatedVisibility(
-                visible = onTab,
-                enter = slideInVertically { it } + fadeIn(),
-                exit = slideOutVertically { it } + fadeOut(),
-            ) {
-                BottomBar(vm.tab, vm::showTab)
+                AnimatedVisibility(
+                    visible = onTab,
+                    enter = slideInVertically { it } + fadeIn(),
+                    exit = slideOutVertically { it } + fadeOut(),
+                ) {
+                    BottomBar(vm.tab, vm::showTab)
+                }
             }
         }
     }
+}
+
+/** Used app-wide when the user turns vibration off. */
+private object SilentHaptics : HapticFeedback {
+    override fun performHapticFeedback(hapticFeedbackType: HapticFeedbackType) = Unit
 }
 
 private fun homeState(vm: MainViewModel): HomeState {

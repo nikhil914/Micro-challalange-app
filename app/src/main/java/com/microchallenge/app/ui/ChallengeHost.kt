@@ -1,12 +1,38 @@
 package com.microchallenge.app.ui
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.sp
+import com.microchallenge.app.ui.design.AppFonts
+import com.microchallenge.app.ui.design.FeedbackOverlay
+import com.microchallenge.app.ui.design.LocalGameFeedback
+import com.microchallenge.app.ui.design.LocalReduceMotion
+import com.microchallenge.app.ui.design.Palette
+import com.microchallenge.app.ui.design.Shapes
+import com.microchallenge.app.ui.design.rememberGameFeedback
+import com.microchallenge.app.ui.design.style
+import com.microchallenge.core.model.ChallengeType
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -126,21 +152,13 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
     val haptics = if (hapticsOn) LocalHapticFeedback.current else NoHaptics
     val remaining = (countdown.durationMs - elapsedMs).coerceAtLeast(0)
 
+    val feedback = rememberGameFeedback(haptics)
+
     Column(Modifier.fillMaxSize()) {
-        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            Text(session.type.title, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold,
-                modifier = Modifier.weight(1f))
-            Text(String.format(Locale.US, "%.1fs", remaining / 1000f),
-                style = MaterialTheme.typography.titleLarge,
-                color = if (remaining < 3_000) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onBackground)
-        }
-        LinearProgressIndicator(
-            progress = { remaining.toFloat() / countdown.durationMs },
-            modifier = Modifier.fillMaxWidth().height(8.dp)
-                .semantics { contentDescription = "${remaining / 1000} seconds left" },
-        )
-        Spacer(Modifier.height(16.dp))
-        CompositionLocalProvider(LocalHapticFeedback provides haptics) {
+        HostHeader(session.type, remaining, countdown.durationMs)
+        Spacer(Modifier.height(12.dp))
+        Box(Modifier.weight(1f).fillMaxWidth()) {
+        CompositionLocalProvider(LocalHapticFeedback provides haptics, LocalGameFeedback provides feedback) {
             when (session) {
                 is ReactionTapSession -> ReactionTapScreen(session, elapsedMs, onInput)
                 is NumberMemorySession -> NumberMemoryScreen(session, elapsedMs, onInput)
@@ -176,6 +194,53 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is StackTowerSession -> StackTowerScreen(session, elapsedMs, onInput)
                 is TwinScenesSession -> TwinScenesScreen(session, elapsedMs, onInput)
                 else -> Text("Unknown challenge")
+            }
+        }
+            FeedbackOverlay(feedback)
+        }
+    }
+}
+
+/** Game name plus a big seconds counter and a thick gradient timer that turns coral and pulses near the end. */
+@Composable
+private fun HostHeader(type: ChallengeType, remaining: Long, durationMs: Long) {
+    val style = type.skill.style()
+    val low = remaining in 1..2_999
+    val reduce = LocalReduceMotion.current
+    val pulse = if (low && !reduce) {
+        val t = rememberInfiniteTransition(label = "low")
+        t.animateFloat(1f, 1.14f, infiniteRepeatable(tween(260, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+            label = "pulse").value
+    } else 1f
+    Column {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Box(Modifier.width(6.dp).height(26.dp).clip(Shapes.pill).background(style.brush))
+            Text(type.title, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold,
+                modifier = Modifier.weight(1f).padding(start = 10.dp))
+            Text(
+                String.format(Locale.US, "%.1f", remaining / 1000f),
+                fontFamily = AppFonts.display, fontWeight = FontWeight.Black, fontSize = 28.sp,
+                color = if (low) Palette.Wrong else Palette.Text,
+                modifier = Modifier.scale(pulse),
+            )
+            Text("s", style = MaterialTheme.typography.titleMedium, color = Palette.TextFaint,
+                modifier = Modifier.padding(start = 2.dp, top = 6.dp))
+        }
+        Spacer(Modifier.height(8.dp))
+        val fraction = (remaining.toFloat() / durationMs).coerceIn(0f, 1f)
+        Canvas(
+            Modifier.fillMaxWidth().height(14.dp)
+                .semantics { contentDescription = "${remaining / 1000} seconds left" },
+        ) {
+            val r = CornerRadius(size.height / 2, size.height / 2)
+            drawRoundRect(Palette.Surface2, cornerRadius = r)
+            val w = size.width * fraction
+            if (w > 0f) {
+                val brush = if (low) Brush.horizontalGradient(listOf(Palette.Wrong, Color(0xFFFF9A6B)))
+                else style.horizontal
+                drawRoundRect(brush, size = Size(w.coerceAtLeast(size.height), size.height), cornerRadius = r)
+                drawRoundRect(Color.White.copy(alpha = 0.25f), topLeft = androidx.compose.ui.geometry.Offset(size.height / 3, size.height * 0.2f),
+                    size = Size((w - size.height * 2 / 3).coerceAtLeast(0f), size.height * 0.2f), cornerRadius = r)
             }
         }
     }
