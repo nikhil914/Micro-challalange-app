@@ -29,3 +29,11 @@ fun XScreen(session: XSession, elapsedMs: Long, onInput: () -> Unit)
 - Large touch targets (>=64dp), never rely on color alone (add shape/label), content descriptions for TalkBack.
 - Colors: use `MaterialTheme.colorScheme` plus `com.microchallenge.app.ui.GameColors` (red, green, blue, yellow, purple, orange — each has `.color` and `.label`).
 - Use `Modifier.pointerInput { detectTapGestures(onPress = ...) }` for reaction-critical taps (fires on touch down, not release).
+- Background: the host draws a dark indigo glow behind the game, so a game does not need to paint its own background.
+
+Menu art and shared feedback (`app/src/main/java/com/microchallenge/app/ui/design/`):
+- A new game appears on the Play and Games tabs automatically, using its skill's gradient and a default glyph.
+  To give it its own tile, add one line to `GameVisuals.glyphs` (a `GameArt` icon or a short text label).
+- Optional: call `LocalGameFeedback.current.correct()`, `.wrong()` or `.combo(n)` from the game screen to get the
+  shared edge flash, combo badge and haptic. Games that already do their own feedback can skip it.
+- Reuse the tokens in `Tokens.kt` (`Palette`, `Skill.style()`, `Shapes`) instead of hard-coding new menu colors.

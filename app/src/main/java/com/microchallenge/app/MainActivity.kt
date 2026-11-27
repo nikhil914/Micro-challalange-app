@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         if (savedInstanceState == null) handleIntent(intent)
         setContent {
-            MicroMindTheme {
+            MicroMindTheme(reduceMotion = vm.reduceMotion) {
                 AppRoot(vm)
             }
         }
