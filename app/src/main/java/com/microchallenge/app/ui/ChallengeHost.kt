@@ -69,6 +69,8 @@ import com.microchallenge.core.challenges.games.SlideShiftSession
 import com.microchallenge.app.games.WeighInScreen
 import com.microchallenge.core.challenges.games.WeighInSession
 import com.microchallenge.app.games.GlowGridScreen
+import com.microchallenge.app.games.TwinScenesScreen
+import com.microchallenge.core.challenges.games.TwinScenesSession
 import com.microchallenge.app.games.WordScrambleScreen
 import com.microchallenge.core.challenges.games.GlowGridSession
 import com.microchallenge.core.challenges.games.WordScrambleSession
@@ -166,6 +168,7 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is NeonDashSession -> NeonDashScreen(session, elapsedMs, onInput)
                 is MathBlitzSession -> MathBlitzScreen(session, elapsedMs, onInput)
                 is StackTowerSession -> StackTowerScreen(session, elapsedMs, onInput)
+                is TwinScenesSession -> TwinScenesScreen(session, elapsedMs, onInput)
                 else -> Text("Unknown challenge")
             }
         }
