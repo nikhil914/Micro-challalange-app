@@ -33,6 +33,7 @@ jobs:
         with:
           name: micromind-debug-apk
           path: app/build/outputs/apk/debug/*.apk
+          retention-days: 7
 
       - name: Upload test reports
         if: always()
@@ -40,3 +41,4 @@ jobs:
         with:
           name: core-test-reports
           path: core/build/reports/tests/
+          retention-days: 3
