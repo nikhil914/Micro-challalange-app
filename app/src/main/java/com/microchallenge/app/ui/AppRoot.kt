@@ -75,12 +75,13 @@ fun AppRoot(vm: MainViewModel) {
                         is Screen.Result -> Box(Modifier.padding(16.dp)) {
                             ResultScreen(s, onAgain = vm::newChallenge, onRetry = vm::retry, onHome = vm::goBack)
                         }
-                        Screen.Stats -> Box(Modifier.padding(16.dp)) {
-                            StatsScreen(vm.repo, vm.streakNow(), onBack = vm::goBack, onSettings = vm::showSettings)
-                        }
-                        Screen.Settings -> Box(Modifier.padding(16.dp)) {
-                            SettingsScreen(vm.hapticsOn, vm::setHaptics, vm::resetProgress, onBack = vm::goBack)
-                        }
+                        Screen.Stats -> StatsScreen(vm.repo, vm.streakNow(), vm.today(), onSettings = vm::showSettings)
+                        Screen.Settings -> SettingsScreen(
+                            hapticsOn = vm.hapticsOn, onHaptics = vm::setHaptics,
+                            reduceMotion = vm.reduceMotion, onReduceMotion = vm::setMotionReduced,
+                            autoStart = vm.autoStartOnOpen, onAutoStart = vm::setAutoStart,
+                            onReset = vm::resetProgress, onBack = vm::goBack,
+                        )
                     }
                 }
                 AnimatedVisibility(

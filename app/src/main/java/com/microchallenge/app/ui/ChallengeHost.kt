@@ -196,7 +196,8 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 else -> Text("Unknown challenge")
             }
         }
-            FeedbackOverlay(feedback)
+        // Drawn over the game; never takes touches.
+        FeedbackOverlay(feedback)
         }
     }
 }
