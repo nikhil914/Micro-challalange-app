@@ -81,6 +81,7 @@ jobs:
         with:
           name: micromind-release-${{ env.VERSION_NAME }}
           path: dist/*
+          retention-days: 7
 
       - name: Publish GitHub release
         if: env.RELEASE_TAG != ''
