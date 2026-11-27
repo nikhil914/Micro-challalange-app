@@ -69,6 +69,8 @@ import com.microchallenge.core.challenges.games.SlideShiftSession
 import com.microchallenge.app.games.WeighInScreen
 import com.microchallenge.core.challenges.games.WeighInSession
 import com.microchallenge.app.games.GlowGridScreen
+import com.microchallenge.app.games.TwinScenesScreen
+import com.microchallenge.core.challenges.games.TwinScenesSession
 import com.microchallenge.app.games.WordScrambleScreen
 import com.microchallenge.core.challenges.games.GlowGridSession
 import com.microchallenge.app.games.SlidingTileScreen
@@ -79,7 +81,11 @@ import com.microchallenge.core.challenges.games.PipeFlowSession
 import com.microchallenge.app.games.NeonDashScreen
 import com.microchallenge.core.challenges.games.NeonDashSession
 import com.microchallenge.app.games.MathBlitzScreen
+import com.microchallenge.app.games.StackTowerScreen
 import com.microchallenge.core.challenges.games.MathBlitzSession
+import com.microchallenge.app.games.RhythmTapScreen
+import com.microchallenge.core.challenges.games.RhythmTapSession
+import com.microchallenge.core.challenges.games.StackTowerSession
 import com.microchallenge.core.challenges.games.ColorWordSession
 import com.microchallenge.core.challenges.games.GoNoGoSession
 import com.microchallenge.core.challenges.games.MathSprintSession
@@ -166,6 +172,9 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is NeonDashSession -> NeonDashScreen(session, elapsedMs, onInput)
                 is MathBlitzSession -> MathBlitzScreen(session, elapsedMs, onInput)
                 is SlidingTileSession -> SlidingTileScreen(session, elapsedMs, onInput)
+                is RhythmTapSession -> RhythmTapScreen(session, elapsedMs, onInput)
+                is StackTowerSession -> StackTowerScreen(session, elapsedMs, onInput)
+                is TwinScenesSession -> TwinScenesScreen(session, elapsedMs, onInput)
                 else -> Text("Unknown challenge")
             }
         }
