@@ -81,6 +81,8 @@ import com.microchallenge.core.challenges.games.NeonDashSession
 import com.microchallenge.app.games.MathBlitzScreen
 import com.microchallenge.app.games.StackTowerScreen
 import com.microchallenge.core.challenges.games.MathBlitzSession
+import com.microchallenge.app.games.RhythmTapScreen
+import com.microchallenge.core.challenges.games.RhythmTapSession
 import com.microchallenge.core.challenges.games.StackTowerSession
 import com.microchallenge.core.challenges.games.ColorWordSession
 import com.microchallenge.core.challenges.games.GoNoGoSession
@@ -167,6 +169,7 @@ fun ChallengeHost(playing: Screen.Playing, hapticsOn: Boolean, onFinished: () ->
                 is PipeFlowSession -> PipeFlowScreen(session, elapsedMs, onInput)
                 is NeonDashSession -> NeonDashScreen(session, elapsedMs, onInput)
                 is MathBlitzSession -> MathBlitzScreen(session, elapsedMs, onInput)
+                is RhythmTapSession -> RhythmTapScreen(session, elapsedMs, onInput)
                 is StackTowerSession -> StackTowerScreen(session, elapsedMs, onInput)
                 is TwinScenesSession -> TwinScenesScreen(session, elapsedMs, onInput)
                 else -> Text("Unknown challenge")
