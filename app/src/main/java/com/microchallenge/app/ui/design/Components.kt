@@ -44,6 +44,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -423,10 +424,11 @@ fun StatTile(value: String, label: String, modifier: Modifier = Modifier, color:
 /**
  * Slow drifting color glows behind the whole app. Static when motion is reduced.
  * [accent] tints the main glow, e.g. with the current game's skill color.
+ * Pass [still] while a game runs so the background costs no frames.
  */
 @Composable
-fun GlowBackground(modifier: Modifier = Modifier, accent: Color = Palette.Primary) {
-    val reduce = LocalReduceMotion.current
+fun GlowBackground(modifier: Modifier = Modifier, accent: Color = Palette.Primary, still: Boolean = false) {
+    val reduce = LocalReduceMotion.current || still
     val phase = if (!reduce) {
         val t = rememberInfiniteTransition(label = "glow")
         t.animateFloat(0f, (2 * PI).toFloat(), infiniteRepeatable(tween(24_000, easing = LinearEasing)), label = "phase").value
@@ -449,3 +451,44 @@ fun GlowBackground(modifier: Modifier = Modifier, accent: Color = Palette.Primar
 
 @Composable
 private fun animateColor(target: Color) = androidx.compose.animation.animateColorAsState(target, tween(800), label = "tint")
+
+/** Fades and slides an element up when it first appears, [index] steps after the first one. */
+@Composable
+fun Modifier.staggerIn(index: Int): Modifier {
+    val reduce = LocalReduceMotion.current
+    val a = remember { Animatable(if (reduce) 1f else 0f) }
+    LaunchedEffect(Unit) {
+        if (a.value < 1f) {
+            kotlinx.coroutines.delay(index.coerceIn(0, 8) * 55L)
+            a.animateTo(1f, tween(420, easing = FastOutSlowInEasing))
+        }
+    }
+    return this.graphicsLayer {
+        alpha = a.value
+        translationY = (1f - a.value) * 36.dp.toPx()
+    }
+}
+
+/** Gentle up-and-down float for hero art. */
+@Composable
+fun Modifier.floating(amount: Dp = 6.dp, periodMs: Int = 2_200): Modifier {
+    if (LocalReduceMotion.current) return this
+    val t = rememberInfiniteTransition(label = "float")
+    val y by t.animateFloat(-1f, 1f, infiniteRepeatable(tween(periodMs, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "y")
+    return this.graphicsLayer { translationY = y * amount.toPx() }
+}
+
+/** Round icon-size button with a text glyph, e.g. a back arrow or a gear. */
+@Composable
+fun RoundIconButton(glyph: String, description: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Box(
+        modifier.size(44.dp).clip(Shapes.pill).background(Palette.Surface2)
+            .border(1.dp, Palette.Outline, Shapes.pill)
+            .pressable(onClick)
+            .semantics { contentDescription = description },
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(glyph, fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Palette.Text)
+    }
+}
