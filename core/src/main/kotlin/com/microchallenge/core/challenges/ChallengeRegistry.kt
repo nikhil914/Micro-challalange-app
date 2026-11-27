@@ -29,6 +29,7 @@ import com.microchallenge.core.challenges.games.WordScrambleSession
 import com.microchallenge.core.challenges.games.PipeFlowSession
 import com.microchallenge.core.challenges.games.NeonDashSession
 import com.microchallenge.core.challenges.games.MathBlitzSession
+import com.microchallenge.core.challenges.games.StackTowerSession
 import com.microchallenge.core.challenges.games.TwinScenesSession
 import com.microchallenge.core.engine.Clock
 import com.microchallenge.core.model.ChallengeType
@@ -66,6 +67,7 @@ object ChallengeRegistry {
         ChallengeType.PIPE_FLOW to ChallengeFactory { d, r, c -> PipeFlowSession(d, r, c) },
         ChallengeType.NEON_DASH to ChallengeFactory { d, r, c -> NeonDashSession(d, r, c) },
         ChallengeType.MATH_BLITZ to ChallengeFactory { d, r, c -> MathBlitzSession(d, r, c) },
+        ChallengeType.STACK_TOWER to ChallengeFactory { d, r, c -> StackTowerSession(d, r, c) },
         ChallengeType.TWIN_SCENES to ChallengeFactory { d, r, c -> TwinScenesSession(d, r, c) },
     )
 
